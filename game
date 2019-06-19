@@ -1,0 +1,16 @@
+import random
+wining = random.randint(0,100)
+game = False
+cout =1
+print(wining)
+while not game:
+    guess = input("Guess a number from 1 to 100: ")
+    guess = int(guess)
+    if guess > wining:
+        print(f"{guess} is high")
+    elif guess < wining:
+        print(f"{guess} is low")
+    else:
+        print(f"you win! in {cout} attempt")
+        game = True
+    cout += 1
