@@ -1,0 +1,6 @@
+n = input("Enter your name: ")
+tem  = ""
+for i in range(0,len(n)):
+    if n[i] not in tem:
+        print(f"{n[i]}:{n.count(n[i])}")
+        tem += n[i]
