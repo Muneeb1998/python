@@ -24,7 +24,7 @@ class HangMan(object):
         print(word)
         print('The word is: ', result)
         success, i, missed = False, 0, []
-        while i < 1:
+        while i < (len(word) +2):
             print('Guess the word: ', end='')
             guess,right = self.askAndEvaluate(word, result, missed)
             if guess == None:
