@@ -1,0 +1,62 @@
+import time
+import random
+
+class HangMan(object):
+  words = '''ant cat car'''.split()
+  def __init__(self):
+    pass
+  def pickWord(self):
+        return self.words[random.randint(0, len(self.words) - 1)]
+  def askAndEvaluate(self, word, result, missed):
+        guess = input()
+        if guess == None or len(guess) != 1 or (guess in result) or (guess in missed):
+            return None, False
+        i = 0
+        right = guess in word
+        for c in word:
+            if c == guess:
+                result[i] = c
+            i += 1
+        return guess, right
+  def start(self):
+        word = list(self.pickWord())
+        result = list('*' * len(word))
+        print(word)
+        print('The word is: ', result)
+        success, i, missed = False, 0, []
+        while i < 1:
+            print('Guess the word: ', end='')
+            guess,right = self.askAndEvaluate(word, result, missed)
+            if guess == None:
+                print('You\'ve already entered this character.')
+                continue
+            print(''.join(result))
+            if result == word:
+                print('Congratulations ! You\'ve just saved a life !')
+                success = True
+                break
+            if not right:
+                missed.append(guess)
+                i+=1
+            print('Missed characters: ', missed)
+        
+        if not success:
+            print('The word was \''+''.join(word)+'\' ! You not able to save yourself')
+            print("\t\t +-----+")
+            print("\t\t |     |")
+            print("\t\t o     |")
+            print("\t\t/|\\    |")
+            print("\t\t |     |")
+            print("\t\t/ \\    |")
+            print("\t\t        |")
+            print("\t\t=========")
+  
+name =input("Your name: ")
+print("Hi! {} lets play Hangnan game".format(name))
+time.sleep(1)
+print("Here try to safe yourself by guessing correct letter")
+print("\t\t o")
+print("\t\t/|\\")
+print("\t\t |")
+print("\t\t/ \\")
+a = HangMan().start()
